@@ -1,5 +1,6 @@
 {
     "type": "project",
+    "description": "A dockered container for the species microservice of appquarium",
     "license": "proprietary",
     "require": {
         "php": "^7.2.5",
