@@ -1,0 +1,97 @@
+method: db
+save: id
+class: App\Document\Species
+
+elements:
+  poecilia_reticulata:
+    body:
+      kind: fish
+      owner: /api/users/4
+
+  betta_splendens:
+    body:
+      kind: fish
+      owner: /api/users/4
+      validationState: published
+
+  trichogaster_lalius:
+    body:
+      kind: fish
+      owner: /api/users/4
+      validationState: published
+
+  trichogaster_chuna:
+    body:
+      kind: fish
+      owner: /api/users/4
+      validationState: published
+
+  paracheirodon_axelrodi:
+    body:
+      kind: fish
+      owner: /api/users/4
+      validationState: published
+
+  corydoras_panda:
+    body:
+      kind: fish
+      owner: /api/users/4
+      validationState: published
+
+  symphysodon_aequifasciatus:
+    body:
+      kind: fish
+      owner: /api/users/4
+      validationState: published
+
+  labidochromis_caeruleus:
+    body:
+      kind: fish
+      owner: /api/users/4
+      validationState: published
+
+  julidochromis_marlieri:
+    body:
+      kind: fish
+      owner: /api/users/4
+      validationState: published
+
+  neolamprologus_multifasciatus:
+    body:
+      kind: fish
+      owner: /api/users/4
+      validationState: published
+
+  egeria_densa:
+    body:
+      kind: plant
+      owner: /api/users/5
+      validationState: published
+
+  anubia_barteri_var_nana:
+    body:
+      kind: plant
+      owner: /api/users/5
+      validationState: published
+
+  echinodorus_tenellus:
+    body:
+      kind: plant
+      owner: /api/users/5
+
+  neocaridina_davidi_red_cherry:
+    body:
+      kind: invertebrate
+      owner: /api/users/6
+      validationState: published
+
+  neocaridina_davidi_green:
+    body:
+      kind: invertebrate
+      owner: /api/users/6
+      validationState: published
+
+  neocaridina_davidi_blue:
+    body:
+      kind: invertebrate
+      owner: /api/users/6

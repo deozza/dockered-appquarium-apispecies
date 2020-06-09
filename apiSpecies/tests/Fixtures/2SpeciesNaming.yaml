@@ -1,0 +1,116 @@
+method: db
+save: id
+class: App\Document\Embedded\SpeciesNaming
+
+elements:
+  poecilia_reticulata_naming:
+    body:
+      species: "@App\\Document\\Species@1"
+      owner: /api/users/4
+      scientificName: "Poecilia Reticulata"
+      familyName: Poecilidae
+
+  betta_splendens_naming:
+    body:
+      species: "@App\\Document\\Species@2"
+      owner: /api/users/4
+      scientificName: "Betta Splendens"
+      familyName: Osphroneidae
+
+  trichogaster_lalius_naming:
+    body:
+      species: "@App\\Document\\Species@3"
+      owner: /api/users/4
+      scientificName: "Trichogaster Lalius"
+      familyName: Osphroneidae
+
+  trichogaster_chuna_naming:
+    body:
+      species: "@App\\Document\\Species@4"
+      owner: /api/users/4
+      scientificName: "Trichogaster Chuna"
+      familyName: Osphroneidae
+
+  paracheirodon_axelrodi_naming:
+    body:
+      species: "@App\\Document\\Species@5"
+      owner: /api/users/4
+      scientificName: "Paracheirodon Axelrodi"
+      familyName: Characidae
+
+  corydoras_panda_naming:
+    body:
+      species: "@App\\Document\\Species@6"
+      owner: /api/users/4
+      scientificName: "Corydoras Panda"
+      familyName: Osphroneidae
+
+  symphysodon_aequifasciatus_naming:
+    body:
+      species: "@App\\Document\\Species@7"
+      owner: /api/users/4
+      scientificName: "Symphysodon Aequifasciatus"
+      familyName: Cichlidae
+
+  labidochromis_caeruleus_naming:
+    body:
+      species: "@App\\Document\\Species@8"
+      owner: /api/users/4
+      scientificName: "Labidochromis Caeruleus"
+      familyName: Cichlidae
+
+  julidochromis_marlieri_naming:
+    body:
+      species: "@App\\Document\\Species@9"
+      owner: /api/users/4
+      scientificName: "Julidochromis Marlieri"
+      familyName: Cichildae
+
+  neolamprologus_multifasciatus_naming:
+    body:
+      species: "@App\\Document\\Species@10"
+      owner: /api/users/4
+      scientificName: "Neolamprologus Multifasciatus"
+      familyName: Cichlidae
+
+  egeria_densa_naming:
+    body:
+      species: "@App\\Document\\Species@11"
+      owner: /api/users/5
+      scientificName: "Egeria Danse"
+      familyName: Hydrocharitaceae
+
+  anubia_barteri_var_nana_naming:
+    body:
+      species: "@App\\Document\\Species@12"
+      owner: /api/users/5
+      scientificName: "Anubia Barteri var. nana"
+      familyName: Hydrocharitaceae
+
+  echinodorus_tenellus_naming:
+    body:
+      species: "@App\\Document\\Species@13"
+      owner: /api/users/5
+      scientificName: "Echinodorus Tenellus"
+      familyName: Hydrocharitaceae
+
+  neocaridina_davidi_red_cherry_naming:
+    body:
+      species: "@App\\Document\\Species@14"
+      owner: /api/users/6
+      scientificName: "Neocaridina Davidi var. red cherry"
+      familyName: Hydrocharitaceae
+
+  neocaridina_davidi_green_naming:
+    body:
+      species: "@App\\Document\\Species@15"
+      owner: /api/users/6
+      scientificName: "Neocaridina Davidi var. green"
+      familyName: Osphroneidae
+
+  neocaridina_davidi_blue_naming:
+    body:
+      species: "@App\\Document\\Species@16"
+      owner: /api/users/6
+      scientificName: "Neocaridina Davidi var. blue"
+      familyName: Osphroneidae

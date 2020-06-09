@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  appquarium-mongo-apispecies:
+    image: mongo
+    container_name: appquarium-mongo-apispecies
+    environment:
+      MONGO_INITDB_DATABASE: appquarium_apispecies
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - .docker/mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    ports:
+      - 27018:27017
+
+  appquarium-php-apispecies:
+    image: deozza/appquarium-apispecies
+    build:
+      context: .
+      dockerfile: .docker/php/Dockerfile
+    container_name: appquarium-php-apispecies
+    restart: on-failure
+    user: '1000:1000'
+    ports:
+      - 8002:8000
