@@ -1,4 +1,5 @@
 {
+    "name": "deozza/dockered-appquarium-apispecies",
     "type": "project",
     "description": "A dockered container for the species microservice of appquarium",
     "license": "proprietary",
