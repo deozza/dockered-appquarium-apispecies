@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:7.3-fpm as base
 
 RUN apt-get update \
     && apt-get install -y libzip-dev zip libcurl4-openssl-dev pkg-config libssl-dev gnupg
@@ -9,22 +9,15 @@ RUN set -xe \
 RUN pecl install apcu \
     && docker-php-ext-enable apcu
 
-RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug
-
-ADD .docker/php/xdebug.ini /etc/php/conf.d/
-
 RUN pecl install mongodb
 
-RUN  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 68818C72E52529D4 \
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 68818C72E52529D4 \
     && echo "deb http://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.0.list \
     && apt-get update \
     && apt-get install -y mongodb-org
 
 COPY .docker/php/ini/conf.d/memory_limit.ini /usr/local/etc/php/conf.d
 COPY .docker/php/ini/conf.d/mongodb.ini /usr/local/etc/php/conf.d
-
-COPY apiSpecies/ /var/www/apiSpecies
 
 RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls \
     && mv composer.phar /usr/local/bin/composer
@@ -36,8 +29,25 @@ RUN PATH=$PATH:/var/www/apiSpecies/vendor/bin:bin
 
 WORKDIR /var/www/apiSpecies
 
-RUN  composer install
+ENV APP_ENV=dev
 
 EXPOSE 9000
 
 CMD ["php-fpm"]
+
+FROM base as test
+
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
+COPY .docker/php/xdebug.ini /etc/php/conf.d/
+
+COPY apiSpecies/ /var/www/apiSpecies
+
+RUN composer install
+
+FROM base as prod
+
+COPY apiSpecies/ /var/www/apiSpecies
+
+RUN composer install --no-dev --optimize-autoloader

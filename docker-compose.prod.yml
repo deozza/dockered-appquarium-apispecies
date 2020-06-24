@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  appquarium-php-apispecies:
+    image: deozza/appquarium-apispecies
+    build:
+      context: .
+      dockerfile: .docker/php/Dockerfile
+      target: prod
+    container_name: appquarium-php-apispecies
+    restart: on-failure
+    user: '1000:1000'

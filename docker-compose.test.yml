@@ -17,11 +17,7 @@ services:
     build:
       context: .
       dockerfile: .docker/php/Dockerfile
-      target: base
+      target: test
     container_name: appquarium-php-apispecies
-    volumes:
-      - ./apiSpecies/:/var/www/apiSpecies
     restart: on-failure
     user: '1000:1000'
-    ports:
-      - 8002:8002
