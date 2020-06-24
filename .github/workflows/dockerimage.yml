@@ -7,12 +7,19 @@ on:
       - 'apiSpecies/config/**'
       - 'apiSpecies/src/**'
       - 'apiSpecies/tests/**'
+      - '.docker/**'
+      - '.github/**'
+      - 'docker-compose.**'
+
   pull_request:
     branches: [ master ]
     paths:
       - 'apiSpecies/config/**'
       - 'apiSpecies/src/**'
       - 'apiSpecies/tests/**'
+      - '.docker/**'
+      - '.github/**'
+      - 'docker-compose.**'
 
 jobs:
   build:

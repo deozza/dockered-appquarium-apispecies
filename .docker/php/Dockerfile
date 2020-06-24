@@ -44,10 +44,14 @@ COPY .docker/php/xdebug.ini /etc/php/conf.d/
 
 COPY apiSpecies/ /var/www/apiSpecies
 
+ENV APP_ENV=test
+
 RUN composer install
 
 FROM base as prod
 
 COPY apiSpecies/ /var/www/apiSpecies
+
+ENV APP_ENV=prod
 
 RUN composer install --no-dev --optimize-autoloader
