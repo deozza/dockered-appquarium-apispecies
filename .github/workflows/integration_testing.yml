@@ -1,0 +1,35 @@
+name: Integration tests
+
+on:
+  push:
+    branches:
+      - hotfix
+      - develop
+      - feature
+    paths:
+      - 'apiSpecies/config/**'
+      - 'apiSpecies/src/**'
+      - 'apiSpecies/tests/**'
+      - '.docker/**'
+      - '.github/workflows/integration_testing.yml'
+      - 'docker-compose.dev.yml'
+      - 'docker-compose.test.yml'
+
+jobs:
+
+  CI:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker test containers
+      run: docker-compose -f docker-compose.test.yml up -d
+    - name: Check composer
+      run: docker-compose -f docker-compose.test.yml exec -T -u root appquarium-php-apispecies composer validate
+    - name: Install composer dependencies
+      run: docker-compose -f docker-compose.test.yml exec -T -u root appquarium-php-apispecies composer install --prefer-dist --no-scripts --no-progress -q -o
+    - name: Create database
+      run: docker-compose -f docker-compose.test.yml exec -T -u root appquarium-php-apispecies bin/console d:m:s:c --env=test
+    - name: Load fixtures
+      run: docker-compose -f docker-compose.test.yml exec -T -u root appquarium-php-apispecies bin/console t:f:l --env=test
+    - name: Launch tests
+      run: docker-compose -f docker-compose.test.yml exec -T -u root appquarium-php-apispecies bin/phpunit
