@@ -27,7 +27,7 @@ RUN mkdir -p /var/www/.composer && chown -R www-data /var/www/.composer
 
 RUN PATH=$PATH:/var/www/apiSpecies/vendor/bin:bin
 
-WORKDIR /var/www/apiUser
+WORKDIR /var/www/apiSpecies
 
 RUN composer validate \
     && composer install --prefer-dist --no-scripts
