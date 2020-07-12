@@ -44,13 +44,13 @@ jobs:
       run: docker-compose -f docker-compose.prod.yml build appquarium-php-apispecies
     - name: Login to Docker
       run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-    - name: Set outputs
-      id: vars
-      run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-    - name: Tag image
-      run: docker tag deozza/appquarium-apispecies deozza/appquarium-apispecies:${{ steps.vars.outputs.sha_short }}
-    - name: Push to Docker tagged image
-      run: docker push deozza/appquarium-apispecies:${{ steps.vars.outputs.sha_short }}
+#    - name: Set outputs
+#      id: vars
+#      run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+#    - name: Tag image
+#      run: docker tag deozza/appquarium-apispecies deozza/appquarium-apispecies:${{ steps.vars.outputs.sha_short }}
+#    - name: Push to Docker tagged image
+#      run: docker push deozza/appquarium-apispecies:${{ steps.vars.outputs.sha_short }}
     - name: latest image
       run: docker tag deozza/appquarium-apispecies deozza/appquarium-apispecies:latest
     - name: Push to Docker
