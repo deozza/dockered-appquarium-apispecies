@@ -51,7 +51,3 @@ jobs:
       run: docker tag deozza/appquarium-apispecies deozza/appquarium-apispecies:${{ steps.vars.outputs.sha_short }}
     - name: Push to Docker tagged image
       run: docker push deozza/appquarium-apispecies:${{ steps.vars.outputs.sha_short }}
-    - name: latest image
-      run: docker tag deozza/appquarium-apispecies deozza/appquarium-apispecies:latest
-    - name: Push to Docker
-      run: docker push deozza/appquarium-apispecies:latest

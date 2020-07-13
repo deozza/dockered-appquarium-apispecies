@@ -30,6 +30,9 @@ RUN PATH=$PATH:/var/www/apiSpecies/vendor/bin:bin
 
 WORKDIR /var/www/apiSpecies
 
+ENV APP_ENV=prod
+ENV CORS_ALLOW_ORIGIN=ht://apigateway.appquarium.fr
+
 RUN composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --no-suggest --optimize-autoloader
 
 EXPOSE 9000
