@@ -1,4 +1,4 @@
-FROM php:7.3-fpm as base
+FROM php:7.3-fpm
 
 RUN apt-get update \
     && apt-get install -y libzip-dev zip libcurl4-openssl-dev pkg-config libssl-dev gnupg
@@ -11,7 +11,7 @@ RUN pecl install apcu \
 
 RUN pecl install mongodb
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 68818C72E52529D4 \
+RUN  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 68818C72E52529D4 \
     && echo "deb http://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.0.list \
     && apt-get update \
     && apt-get install -y mongodb-org
@@ -29,27 +29,9 @@ RUN PATH=$PATH:/var/www/apiSpecies/vendor/bin:bin
 
 WORKDIR /var/www/apiSpecies
 
-ENV APP_ENV=dev
+RUN composer validate \
+    && composer install --prefer-dist --no-scripts
 
 EXPOSE 9000
 
 CMD ["php-fpm"]
-
-FROM base as test
-
-RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug
-
-COPY .docker/php/xdebug.ini /etc/php/conf.d/
-
-COPY apiSpecies/ /var/www/apiSpecies
-
-RUN composer install
-
-FROM base as prod
-
-COPY apiSpecies/ /var/www/apiSpecies
-
-ENV APP_ENV=prod
-
-RUN composer install --no-dev --optimize-autoloader
