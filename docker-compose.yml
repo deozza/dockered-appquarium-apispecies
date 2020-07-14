@@ -18,6 +18,9 @@ services:
       context: .
       dockerfile: .docker/php/Dockerfile.dev
     container_name: appquarium-php-apispecies
+    environment:
+      CORS_REGEX: true
+      CORS_FORCE_ORIGIN: '~'
     volumes:
       - ./apiSpecies/:/var/www/apiSpecies
     restart: on-failure
