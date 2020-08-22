@@ -56,16 +56,23 @@ use App\Document\Embedded\WaterConstraints;
  *     normalizationContext={"groups"={"species:read"}, "swagger_definition_name"="Read"},
  *     denormalizationContext={"groups"={"species:write"}, "swagger_definition_name"="Write", "allow_extra_attributes"=false}
  * )
- * @ApiFilter(SearchFilter::class, properties={
- *     "kind": "exact",
- *     "speciesNaming.scientificName": "ipartial",
- *     "commonLivingProperties.origin": "exact",
- *     "commonLivingProperties.difficulty": "exact",
- * })
- * @ApiFilter(OrderFilter::class, properties={
- *     "speciesNaming.scientificName": "ASC",
- *     "dateOfCreation"
- * })
+ * @ApiFilter(SearchFilter::class,
+ *     properties={
+ *    		"kind": "exact",
+ *    		"speciesNaming.scientificName": "ipartial",
+ *    		"commonLivingProperties.origin": "exact",
+ *    		"commonLivingProperties.difficulty": "exact",
+ *	   }
+ * )
+ * @ApiFilter(OrderFilter::class,
+ *     properties={
+ *     		"speciesNaming.scientificName": "ASC",
+ *     		"dateOfCreation"
+ * 	   },
+ *      arguments={
+ *     		"orderParameterName"="order"
+ * 		}
+ * )
  * @ODM\Document(repositoryClass=SpeciesRepository::class)
  * @ODM\HasLifecycleCallbacks()
  * @ODM\PrePersist({
@@ -96,7 +103,7 @@ class Species
     /**
      * @ApiProperty(iri="https://schema.org/dateCreated")
      * @ODM\Field(type="date")
-     * @Groups({"species:read:editor"})
+     * @Groups({"species:read:editor", "species:read:collection"})
      */
     private $dateOfCreation;
 
